@@ -15,9 +15,10 @@ fi
 
 show_help() {
   echo "Usage:"
-  echo "  nay init <profile: personal | vm>"
-  echo "  nay switch [--only-system | --full]"
-  echo "  nay update [--only-system | --full]"
+  echo "  nay init <profile: personal | vm>      Initialize nay with the specified profile"
+  echo "  nay switch [--only-system | --full]    Switch to the configured profile"
+  echo "  nay update [--only-system | --full]    Update the configuration"
+  echo "  nay edit                               Edit the dotfiles in the configured editor"
 }
 
 switch_system() {
@@ -134,6 +135,9 @@ case "$1" in
     ;;
   update)
     handle_update "$2"
+    ;;
+  edit)
+    handle_edit
     ;;
   *)
     echo "Unknown command: $1"

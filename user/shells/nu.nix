@@ -6,5 +6,11 @@
     settings = {
       show_banner = false;
     };
+    envFile = {
+      text = ''
+        $env.EDITOR = 'nvim'
+        $env.config.buffer_editor = 'nvim'
+      '';
+    };
   };
 }
