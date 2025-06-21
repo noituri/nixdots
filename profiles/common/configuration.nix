@@ -9,6 +9,7 @@
   environment.systemPackages = with pkgs; [
     neovim
     git
+    udiskie
   ];
 
   environment.variables.EDITOR = "nvim";
@@ -38,6 +39,7 @@
     layout = "us";
     variant = "";
   };
+  services.udisks2.enable = true;
 
   nixpkgs.config.allowUnfree = true;
 

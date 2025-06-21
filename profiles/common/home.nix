@@ -14,7 +14,7 @@
     btop
     zoxide
     starship
-    pfetch
+    neofetch
     ripgrep
     bat
 
