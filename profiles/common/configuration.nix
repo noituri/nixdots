@@ -3,13 +3,15 @@
 {
   imports =
     [
-      ../../hardware-configuration.nix
+      ./hardware-configuration.nix
     ];
 
   environment.systemPackages = with pkgs; [
     neovim
     git
   ];
+
+  environment.variables.EDITOR = "nvim";
 
   # Bootloader.
   boot.loader.grub.enable = true;

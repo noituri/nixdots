@@ -17,13 +17,21 @@
     nixosConfigurations = {
       personal = lib.nixosSystem {
         inherit system;
-        modules = [ ./configuration.nix ];
+        modules = [ ./profiles/personal/configuration.nix ];
+      };
+      vm = lib.nixosSystem {
+        inherit system;
+        modules = [ ./profiles/vm/configuration.nix ];
       };
     };
     homeConfigurations = {
       personal = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
-        modules = [ ./home.nix ];
+        modules = [ ./profiles/personal/home.nix ];
+      };
+      vm = home-manager.lib.homeManagerConfiguration {
+        inherit pkgs;
+        modules = [ ./profiles/vm/home.nix ];
       };
     };
   };
