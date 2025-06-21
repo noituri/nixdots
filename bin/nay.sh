@@ -3,9 +3,19 @@
 set -euo pipefail
 
 NAY_CONFIG_DIR="$HOME/.config/nay"
+PROFILE_LIST=()
 
 if [ -f "$NAY_CONFIG_DIR/env" ]; then
   source "$NAY_CONFIG_DIR/env"
+  set +u
+  for d in "$DOT_FILES_PATH/profiles"/*/; do
+    [[ -d "$d" ]] || continue
+
+    profile_name="$(basename "$d")"
+    [[ "$profile_name" != "common" ]] || continue
+    PROFILE_LIST+=("$profile_name")
+  done
+  set -u
 else
   if [ "$1" != "init" ]; then
     echo "Nay is not initialized. Please run 'nay init <profile>' first."
@@ -13,9 +23,11 @@ else
   fi
 fi
 
+PROFILE_NAMES=$(IFS='|' ; (echo "${PROFILE_LIST[*]}") | sed 's/|/ | /g')
+
 show_help() {
   echo "Usage:"
-  echo "  nay init <profile: personal | vm>      Initialize nay with the specified profile"
+  echo "  nay init <profile: $PROFILE_NAMES>      Initialize nay with the specified profile"
   echo "  nay switch [--only-system | --full]    Switch to the configured profile"
   echo "  nay update [--only-system | --full]    Update the configuration"
   echo "  nay edit                               Edit the dotfiles in the configured editor"
@@ -34,19 +46,21 @@ switch_home() {
 }
 
 handle_init() {
-  case "$1" in
-    personal)
-      NAY_PROFILE="personal"
-      ;;
-    vm)
-      NAY_PROFILE="vm"
-      ;;
-    *)
-      echo "Invalid profile: $2"
+  found=false
+  for p in "${PROFILE_LIST[@]}"; do
+    if [[ "$p" == "$1" ]]; then
+        found=true
+        break
+    fi
+  done
+
+  if ! $found; then
+      echo "Invalid profile: $1. Available profiles are: $PROFILE_NAMES"
       show_help
       exit 1
-      ;;
-  esac
+  fi
+
+  NAY_PROFILE="$1"
 
   set +u
   if [ -n "$DOT_FILES_PATH" ]; then
@@ -119,8 +133,10 @@ handle_edit() {
     cd "$DOT_FILES_PATH" || exit 1
     if [ -n "$EDITOR" ]; then
         $EDITOR .
+        cd - || exit 1
     else
         echo "No editor set. Please set the EDITOR environment variable."
+        cd - || exit 1
         exit 1
     fi
 }

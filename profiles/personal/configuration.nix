@@ -6,7 +6,6 @@
     ../../system/network/personal.nix
     ../../system/users/personal.nix
     ../../system/wms/hyprland.nix
+    ../../system/apps/steam.nix
   ];
-
-  programs.steam.enable = true;
 }

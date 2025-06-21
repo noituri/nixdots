@@ -2,7 +2,6 @@
 
 {
   imports = [
-    # TODO: Make it configurable
     ../../user/shells/nu.nix
   ];
 

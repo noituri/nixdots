@@ -23,6 +23,10 @@
         inherit system;
         modules = [ ./profiles/vm/configuration.nix ];
       };
+      homelab = lib.nixosSystem {
+        inherit system;
+        modules = [ ./profiles/vm/configuration.nix ];
+      };
     };
     homeConfigurations = {
       personal = home-manager.lib.homeManagerConfiguration {
@@ -30,6 +34,10 @@
         modules = [ ./profiles/personal/home.nix ];
       };
       vm = home-manager.lib.homeManagerConfiguration {
+        inherit pkgs;
+        modules = [ ./profiles/vm/home.nix ];
+      };
+      homelab = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
         modules = [ ./profiles/vm/home.nix ];
       };
