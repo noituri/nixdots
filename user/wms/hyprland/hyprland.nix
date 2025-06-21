@@ -8,9 +8,7 @@
   programs.tofi.enable = true;
   programs.hyprlock.enable = true;
 
-  services.hyprpaper = {
-    enable = true;
-  };
+  # TODO: Move whole config here
   services.hypridle = {
     enable = true;
   };

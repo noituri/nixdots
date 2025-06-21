@@ -3,11 +3,17 @@
   
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-25.05";
-    home-manager.url = "github:nix-community/home-manager/release-25.05";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    home-manager = {
+      url = "github:nix-community/home-manager/release-25.05";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    stylix = {
+      url = "github:nix-community/stylix/release-25.05";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }:
+  outputs = { self, nixpkgs, home-manager, stylix, ... }:
   let
     lib = nixpkgs.lib;
     system = "x86_64-linux";
@@ -31,15 +37,21 @@
     homeConfigurations = {
       personal = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
-        modules = [ ./profiles/personal/home.nix ];
+        modules = [
+          stylix.homeModules.stylix
+          ./profiles/personal/home.nix
+        ];
       };
       vm = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
-        modules = [ ./profiles/vm/home.nix ];
+        modules = [
+          stylix.homeModules.stylix
+          ./profiles/vm/home.nix
+        ];
       };
       homelab = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
-        modules = [ ./profiles/vm/home.nix ];
+        modules = [ ./profiles/homelab/home.nix ];
       };
     };
   };
