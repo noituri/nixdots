@@ -2,9 +2,9 @@
 
 show_help() {
   echo "Usage:"
-  echo "  $0 init"
-  echo "  $0 switch [--only-system | --full]"
-  echo "  $0 update [--only-system | --full]"
+  echo "  nay init"
+  echo "  nay switch [--only-system | --full]"
+  echo "  nay update [--only-system | --full]"
 }
 
 handle_init() {
@@ -57,13 +57,13 @@ handle_update() {
 
 case "$1" in
   init)
-    init
+    handle_init
     ;;
   switch)
-    switch_cmd "$2"
+    handle_switch "$2"
     ;;
   update)
-    update_cmd "$2"
+    handle_update "$2"
     ;;
   *)
     echo "Unknown command: $1"
