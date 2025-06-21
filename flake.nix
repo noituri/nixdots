@@ -14,13 +14,13 @@
       pkgs = nixpkgs.legacyPackages.${system};
     in {
     nixosConfigurations = {
-      home = lib.nixosSystem {
+      personal = lib.nixosSystem {
         inherit system;
         modules = [ ./configuration.nix ];
       };
     };
     homeConfigurations = {
-      home = home-manager.lib.homeManagerConfiguration {
+      personal = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
         modules = [ ./home.nix ];
       };
