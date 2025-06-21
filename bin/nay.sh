@@ -2,15 +2,47 @@
 
 show_help() {
   echo "Usage:"
-  echo "  nay init"
+  echo "  nay init <profile: personal | vm>"
   echo "  nay switch [--only-system | --full]"
   echo "  nay update [--only-system | --full]"
 }
 
 handle_init() {
-  echo "init"
+  case "$1" in
+    personal)
+      NIX_PROFILE="personal"
+      ;;
+    vm)
+      NIX_PROFILE="vm"
+      ;;
+    *)
+      echo "Invalid profile: $2"
+      show_help
+      exit 1
+      ;;
+  esac
+
+  if [ -n "$DOT_FILES_PATH" ]; then
+      echo "nay already initialized in $DOT_FILES_PATH"
+      exit 1
+  fi
+
+  DOT_FILES_PATH="$(dirname "$(dirname "$0")")"
+  echo "Initializing nay with profile: $NIX_PROFILE"
+  echo "Setting DOT_FILES_PATH to $DOT_FILES_PATH"
+  echo "Writing nayConfig.nix to $DOT_FILES_PATH/nayConfig.nix"
+
+  echo "{}:
+
+let
+  dotFilesPath = \"$DOT_FILES_PATH\";
+  profile = \"$NIX_PROFILE\";
+in
+{
+  inherit dotFilesPath profile;
+}
+" > "$DOT_FILES_PATH/nayConfig.nix"
   # TODO:
-  # fail if profile.nix exists
   # install home-manager
   # set profile
   # build the system
@@ -57,7 +89,7 @@ handle_update() {
 
 case "$1" in
   init)
-    handle_init
+    handle_init "$2"
     ;;
   switch)
     handle_switch "$2"

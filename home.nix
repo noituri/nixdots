@@ -1,5 +1,8 @@
 { config, pkgs, ... }:
 
+let
+  nayConfig = import ./nayConfig.nix;
+in
 {
   imports = [
     ./profiles/personal/home.nix
@@ -14,7 +17,7 @@
   home.stateVersion = "25.05"; # Please read the comment before changing.
 
   home.sessionVariables = {
-    # EDITOR = "emacs";
+    DOT_FILES_PATH = nayConfig.dotfilesPath;
   };
 
   programs.home-manager.enable = true;
