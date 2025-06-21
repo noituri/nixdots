@@ -3,7 +3,7 @@
 {
   imports = [
     ../common/configuration.nix
-    ../../system/network/personal.nix
-    ../../system/users/personal.nix
+    ../../system/network/vm.nix
+    ../../system/users/vm.nix
   ];
 }

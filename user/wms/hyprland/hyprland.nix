@@ -1,6 +1,9 @@
 { config, pkgs, ... }:
 
 {
+  home.packages = with pkgs; [
+  ];
+
   home.file.".config/hypr/hyprland.conf".source = ./config/hyprland.conf;
   home.file.".config/hypr/hypridle.conf".source = ./config/hypridle.conf;
   home.file.".config/hypr/hyprpaper.conf".source = ./config/hyprpaper.conf;
