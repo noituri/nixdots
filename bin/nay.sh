@@ -133,6 +133,7 @@ handle_edit() {
     cd "$DOT_FILES_PATH" || exit 1
     if [ -n "$EDITOR" ]; then
         $EDITOR .
+        git add -A
         cd - || exit 1
     else
         echo "No editor set. Please set the EDITOR environment variable."
