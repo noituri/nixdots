@@ -3,6 +3,7 @@
 {
   imports = [
     ../common/home.nix
+    ../../user/wms/hyprland/hyprland.nix
   ];
 
   home.packages = with pkgs; [
@@ -19,6 +20,4 @@
     kitty
     spotify
   ];
-
-  programs.steam.enable = true;
 }

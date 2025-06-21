@@ -3,8 +3,11 @@
 {
   imports = [
     # TODO: Make it configurable
-    ../user/shells/nu.nix
+    ../../user/shells/nu.nix
   ];
+
+  home.username = "noit";
+  home.homeDirectory = "/home/noit";
 
   home.packages = with pkgs; [
     yazi
@@ -14,5 +17,7 @@
     starship
     pfetch
     ripgrep
+
+    (writeShellScriptBin "nay" (builtins.readFile ../../bin/nay.sh))
   ];
 }

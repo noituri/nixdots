@@ -2,13 +2,8 @@
 
 {
   imports = [
-    ./user/wms/hyprland/hyprland.nix
-    ./user/shells/nu.nix
+    ./profiles/personal/home.nix
   ];
-
-  home.username = "noit";
-  home.homeDirectory = "/home/noit";
-
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
   # introduces backwards incompatible changes.
@@ -18,12 +13,11 @@
   # release notes.
   home.stateVersion = "25.05"; # Please read the comment before changing.
 
-  home.packages = [
-  ];
-
   home.sessionVariables = {
     # EDITOR = "emacs";
   };
 
   programs.home-manager.enable = true;
+
+  nixpkgs.config.allowUnfree = true;
 }
