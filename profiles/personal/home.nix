@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 
 {
   imports = [
@@ -12,7 +12,7 @@
     emacs
     zellij
     discord
-    # TODO: Zen browser
+    inputs.zen-browser.packages.${pkgs.system}.default
     firefox
     google-chrome
     stremio

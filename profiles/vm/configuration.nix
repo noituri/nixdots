@@ -5,12 +5,8 @@
     ../common/configuration.nix
     ../../system/network/vm.nix
     ../../system/users/vm.nix
-    ../../system/wms/sddm.nix
-    ../../system/wms/hyprland.nix
   ];
 
-  environment.systemPackages = with pkgs; [
-    virtiofsd
-  ];
+  environment.systemPackages = with pkgs; [ ];
   virtualisation.virtualbox.guest.enable = true;
 }
