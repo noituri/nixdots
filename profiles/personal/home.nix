@@ -21,4 +21,6 @@
     kitty
     spotify
   ];
+
+  programs.zed-editor.enable = true;
 }
