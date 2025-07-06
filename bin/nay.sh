@@ -27,10 +27,11 @@ PROFILE_NAMES=$(IFS='|' ; (echo "${PROFILE_LIST[*]}") | sed 's/|/ | /g')
 
 show_help() {
   echo "Usage:"
-  echo "  nay init <profile: $PROFILE_NAMES>      Initialize nay with the specified profile"
+  echo "  nay init <profile: $PROFILE_NAMES>     Initialize nay with the specified profile"
   echo "  nay switch [--only-system | --full]    Switch to the configured profile"
   echo "  nay update [--only-system | --full]    Update the configuration"
   echo "  nay edit                               Edit the dotfiles in the configured editor"
+  echo "  nay clean                              Cleans unreachable store objects"
 }
 
 switch_system() {
@@ -142,6 +143,10 @@ handle_edit() {
     fi
 }
 
+handle_clean() {
+  nix-collect-garbage
+}
+
 set +u
 case "$1" in
   init)
@@ -155,6 +160,9 @@ case "$1" in
     ;;
   edit)
     handle_edit
+    ;;
+  clean)
+    handle_clean
     ;;
   *)
     echo "Unknown command: $1"

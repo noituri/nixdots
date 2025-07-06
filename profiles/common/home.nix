@@ -2,7 +2,8 @@
 
 {
   imports = [
-    ../../user/shells/nu.nix
+    ../../user/shells/starship/starship.nix
+    ../../user/shells/nushell/nu.nix
   ];
 
   home.username = "noit";
