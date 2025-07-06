@@ -1,11 +1,6 @@
 { config, pkgs, ... }:
 
 {
-  imports =
-    [
-      ./hardware-configuration.nix
-    ];
-
   environment.systemPackages = with pkgs; [
     neovim
     git
@@ -13,12 +8,6 @@
   ];
 
   environment.variables.EDITOR = "nvim";
-
-  # Bootloader.
-  boot.loader.grub.enable = true;
-  # TODO: This needs to be configured with nay? or use /dev/disk/by-label
-  boot.loader.grub.device = "/dev/sda";
-  boot.loader.grub.useOSProber = true;
 
   time.timeZone = "Europe/Warsaw";
 

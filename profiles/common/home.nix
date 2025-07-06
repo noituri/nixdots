@@ -4,6 +4,8 @@
   imports = [
     ../../user/shells/starship/starship.nix
     ../../user/shells/nushell/nu.nix
+    ../../user/themes/stylix.nix
+    ../../user/apps/neovim/neovim.nix
   ];
 
   home.username = "noit";

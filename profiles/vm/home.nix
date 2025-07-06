@@ -3,7 +3,6 @@
 {
   imports = [
     ../common/home.nix
-    ../../user/themes/stylix.nix
   ];
 
   home.packages = with pkgs; [
