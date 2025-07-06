@@ -7,6 +7,8 @@
     udiskie
   ];
 
+  virtualisation.docker.enable = true;
+
   environment.variables.EDITOR = "nvim";
 
   time.timeZone = "Europe/Warsaw";
