@@ -3,7 +3,7 @@
 {
   imports = [
     ../common/home.nix
-    ../../user/apps/zellij.nix
+    ../../user/apps/zellij/zellij.nix
   ];
 
   home.packages = with pkgs; [
