@@ -21,6 +21,14 @@ else
     echo "Nay is not initialized. Please run 'nay init <profile>' first."
     exit 1
   fi
+
+  for d in "$(pwd)/profiles"/*/; do
+    [[ -d "$d" ]] || continue
+
+    profile_name="$(basename "$d")"
+    [[ "$profile_name" != "common" ]] || continue
+    PROFILE_LIST+=("$profile_name")
+  done
 fi
 
 PROFILE_NAMES=$(IFS='|' ; (echo "${PROFILE_LIST[*]}") | sed 's/|/ | /g')

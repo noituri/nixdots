@@ -4,13 +4,14 @@
   imports = [
     ../common/home.nix
     ../../user/apps/zellij/zellij.nix
+    ../../user/wms/hyprland/hyprland.nix
   ];
 
   home.packages = with pkgs; [
     vlc
     emacs
     discord
-    inputs.zen-browser.packages.${pkgs.system}.default
+    # inputs.zen-browser.packages.${pkgs.system}.default
     firefox
     google-chrome
     stremio

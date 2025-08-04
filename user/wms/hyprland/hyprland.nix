@@ -1,10 +1,11 @@
 { config, pkgs, ... }:
 
 {
+  imports = [ ./waybar.nix ];
+
   home.packages = with pkgs; [
   ];
 
-  programs.waybar.enable = true;
   programs.tofi.enable = true;
   programs.hyprlock.enable = true;
 
@@ -21,15 +22,15 @@
       };
 
       listener = [
-        {
-          timeout = 0;
-          on-timeout = "hyprlock";
-        }
-        {
-          timeout = 2;
-          on-timeout = "systemctl suspend";
-          on-resume = "pkill hyprlidle";
-        }
+        # {
+        #   timeout = 0;
+        #   on-timeout = "hyprlock";
+        # }
+        # {
+        #   timeout = 2;
+        #   on-timeout = "systemctl suspend";
+        #   on-resume = "pkill hyprlidle";
+        # }
       ];
     };
   };
@@ -37,7 +38,13 @@
     enable = true;
   };
 
+  home.pointerCursor = {
+    name = "Bibata-Modern-Ice";
+    package = pkgs.hyprcursor;
+    hyprcursor.enable = true;
+  };
+
   home.file.".config/hypr/hyprland.conf".source = ./config/hyprland.conf;
-  home.file.".config/hypr/hyprlock.conf".source = ./config/hyprlock.conf;
+  # home.file.".config/hypr/hyprlock.conf".source = ./config/hyprlock.conf;
   home.file.".config/hypr/screenshot_fullscreen.sh".source = ./config/screenshot_fullscreen.sh;
 }

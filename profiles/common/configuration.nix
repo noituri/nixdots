@@ -1,10 +1,16 @@
 { config, pkgs, ... }:
 
 {
+  imports = [ ../../system/apps/git.nix ];
+
   environment.systemPackages = with pkgs; [
     neovim
-    git
+    nodejs_20 # needed for some neovim lsps
     udiskie
+    cmake
+    tree-sitter
+    clang
+    gcc
   ];
 
   virtualisation.docker.enable = true;

@@ -12,31 +12,12 @@ return {
                 ensure_installed = {
                     "lua_ls",
                     "zls",
-                    "html",
-                    "cssls",
-                    "yamlls",
-                    "wgsl_analyzer",
-                    "glslls",
                     "jsonls",
                     "dockerls",
                     "bashls",
                     "marksman",
-                    "ts_ls",
                     "clangd",
                     "cmake",
-                    "gopls",
-                    "jdtls",
-                    "kotlin_language_server",
-                },
-            })
-        end,
-    },
-    {
-        "WhoIsSethDaniel/mason-tool-installer.nvim",
-        config = function()
-            require("mason-tool-installer").setup({
-                ensure_installed = {
-                    "ktlint",
                 },
             })
         end,
@@ -63,18 +44,6 @@ return {
                     },
                 },
             })
-            lspconfig.html.setup({
-                capabilities = capabilities,
-            })
-            lspconfig.cssls.setup({
-                capabilities = capabilities,
-            })
-            lspconfig.yamlls.setup({
-                capabilities = capabilities,
-            })
-            lspconfig.wgsl_analyzer.setup({
-                capabilities = capabilities,
-            })
             lspconfig.jsonls.setup({
                 capabilities = capabilities,
             })
@@ -87,29 +56,8 @@ return {
             lspconfig.marksman.setup({
                 capabilities = capabilities,
             })
-            lspconfig.ts_ls.setup({
-                capabilities = capabilities,
-            })
-            lspconfig.glslls.setup({
-                capabilities = capabilities,
-            })
             lspconfig.clangd.setup({
                 capabilities = capabilities,
-            })
-            lspconfig.jdtls.setup({
-                capabilities = capabilities,
-            })
-            lspconfig.kotlin_language_server.setup({
-                capabilities = capabilities,
-            })
-            lspconfig.sourcekit.setup({
-                capabilities = {
-                    workspace = {
-                        didChangeWatchedFiles = {
-                            dynamicRegistration = true,
-                        },
-                    },
-                },
             })
 
             vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
