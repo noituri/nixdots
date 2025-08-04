@@ -8,4 +8,6 @@
       user.email = "mikolaj.radkowski@protonmail.com";
     };
   };
+
+  environment.systemPackages = [ pkgs.gh ];
 }
