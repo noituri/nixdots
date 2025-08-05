@@ -120,22 +120,9 @@ handle_switch() {
 }
 
 handle_update() {
-  case "$1" in
-    "")
-      echo "Updating (default)..."
-      ;;
-    --only-system)
-      echo "Updating (only system)..."
-      ;;
-    --full)
-      echo "Updating (full)..."
-      ;;
-    *)
-      echo "Invalid option for update: $1"
-      show_help
-      exit 1
-      ;;
-  esac
+  set +u
+  nix flake update --flake "$DOT_FILES_PATH"
+  set -u
 }
 
 handle_edit() {

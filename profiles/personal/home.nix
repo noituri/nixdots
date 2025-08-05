@@ -5,6 +5,7 @@
     ../common/home.nix
     ../../user/apps/zellij/zellij.nix
     ../../user/wms/hyprland/hyprland.nix
+    inputs.zen-browser.homeModules.beta
   ];
 
   home.packages = with pkgs; [
@@ -22,4 +23,5 @@
   ];
 
   programs.zed-editor.enable = true;
+  programs.zen-browser.enable = true;
 }

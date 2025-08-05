@@ -36,6 +36,11 @@
   };
   services.mako = {
     enable = true;
+    settings = {
+      anchor = "bottom-right";
+      border-radius = 5;
+      default-timeout = 1500;
+    };
   };
 
   home.pointerCursor = {
